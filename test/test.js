@@ -9,3 +9,8 @@ exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% in
   test.equal(amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60}).interest, 37694.10);
   test.done();
 };
+
+exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest will have paid $16,546.15 in principal'] = function (test) {
+  test.equal(amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60}).principal, 16546.15);
+  test.done();
+};
