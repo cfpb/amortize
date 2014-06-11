@@ -1,10 +1,16 @@
-// ex: amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60})
-
-// amortization table calculations
-// calculate the monthly payment using loan-calc
-// calculate the interest paid per payment
-// calculate remaining loan balance
-// calculate sum of interest payments
+/**
+ * amortization table calculations
+ * ===============================
+ * calculates the monthly payment
+ * calculates remaining loan balance
+ * calculates sum of interest payments
+ * calculates sum of principal payments
+ * @param {number} amount
+ * @param {number} rate
+ * @param {number} totalTerm
+ * @param {number} amortizeTerm
+ * @returns {object}
+ */
 var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
   var periodInt,
       monthlyPayment,
@@ -14,9 +20,11 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
       monthlyPrincPaid,
       summedAmortize = {};
 
+  /** Calculate monthly interest rate and monthly payment */
   periodInt = (rate / 12) / 100;
   monthlyPayment = amount * (periodInt / (1 - Math.pow(1 + periodInt, -(totalTerm))));
 
+  /** Calculate the interest, principal, and remaining balance for each period*/
   var i = 0;
   while( i < amortizeTerm) {
     monthlyIntPaid = amount * periodInt;
@@ -35,15 +43,24 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
 
 };
 
-// round numbers to two decimal places
+/**
+ * Round values to two decimal places
+ * @param {object}
+ * @returns {object}
+ */
 var roundNum = function(numObj) {
-
   for (var property in numObj) {
     numObj[property] = (Math.round(numObj[property] * 100) / 100).toFixed(2);
   }
   return numObj;
 };
 
+/**
+ * Pass values and return output
+ * @param {object} amount, rate, totalTerm, amortizeTerm
+ * @example amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60})
+ * @returns {object}
+ */
 var amortize = function(opts) {
   var amortized = amortizationCalc(opts.amount, opts.rate, opts.totalTerm, opts.amortizeTerm);
   return roundNum(amortized);
