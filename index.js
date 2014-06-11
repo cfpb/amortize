@@ -45,6 +45,20 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
 };
 
 /**
+ * Throw an error if a string or number below 0 is passed
+ * @param {object}
+ * @returns {object}
+ */
+var errorCheck = function(opts) {
+  for (var key in opts) {
+    if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] <= 0) {
+      throw new Error('Specify all values as a positive number');
+    }
+  }
+  return opts;
+};
+
+/**
  * Round values to two decimal places
  * @param {object}
  * @returns {object}
@@ -63,6 +77,7 @@ var roundNum = function(numObj) {
  * @returns {object}
  */
 var amortize = function(opts) {
+  opts = errorCheck(opts);
   var amortized = amortizationCalc(opts.amount, opts.rate, opts.totalTerm, opts.amortizeTerm);
   return roundNum(amortized);
 };

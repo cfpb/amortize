@@ -27,3 +27,19 @@ exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% in
   test.equal(testVal2.interest, 37694.10);
   test.done();
 };
+
+exports['Throw an error if a string is passed'] = function (test) {
+  test.throws(function() {
+    amortize({amount: 'Gregor Samsa', rate: 4.25, totalTerm: 360, amortizeTerm: 60});
+  },
+  Error, 'Specify all values as a positive number');
+  test.done();
+};
+
+exports['Throw an error if a negative value is passed'] = function (test) {
+  test.throws(function() {
+    amortize({amount: -180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60});
+  },
+  Error, 'Specify all values as a positive number');
+  test.done();
+};
