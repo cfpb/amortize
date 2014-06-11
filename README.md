@@ -55,3 +55,7 @@ Run tests with:
 ```
 npm test
 ```
+
+## Notes
+
+This module is intended for predictive purposes and assumes that the borrower does not pay more than the calculated payment each month.
