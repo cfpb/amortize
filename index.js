@@ -38,6 +38,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
   summedAmortize.interest = summedInterest;
   summedAmortize.principal = summedPrincipal;
   summedAmortize.balance = amount;
+  summedAmortize.payment = monthlyPayment;
 
   return summedAmortize;
 
