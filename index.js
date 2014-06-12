@@ -51,8 +51,10 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
  */
 var errorCheck = function(opts) {
   for (var key in opts) {
-    if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] <= 0) {
-      throw new Error('Specify all values as a positive number');
+    if (opts.hasOwnProperty(key)) {
+      if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] <= 0) {
+        throw new Error('Specify all values as a positive number');
+      }
     }
   }
   return opts;
