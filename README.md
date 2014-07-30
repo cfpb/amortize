@@ -20,21 +20,25 @@ Require the module and pass the amount of the loan, annual rate, the length of l
 var amortize = require('amortize');
 
 amortize({
-    amount: 180000,
-    rate: 4.25,
-    totalTerm: 360,
-    amortizeTerm: 60
+  amount: 180000,
+  rate: 4.25,
+  totalTerm: 360,
+  amortizeTerm: 60
 });
 ```
 
-This will return an object containing the interest, principal, balance, and monthly payment:
+This will return an object containing the interest, principal, balance, and monthly payment as both raw and rounded values:
 
 ```javascript
-{
-    interest: 36583.36,
-    principal: 16546.15,
-    balance: 163453.85,
-    payment: 885.49
+{ 
+  interest: 36583.362108097754,
+  principal: 16546.146128485594,
+  balance: 163453.85387151438,
+  payment: 885.4918039430557,
+  interestRound: '36583.36',
+  principalRound: '16546.15',
+  balanceRound: '163453.85',
+  paymentRound: '885.49'
 }
 ```
 

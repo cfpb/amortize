@@ -67,7 +67,7 @@ var errorCheck = function(opts) {
  */
 var roundNum = function(numObj) {
   for (var property in numObj) {
-    numObj[property] = (Math.round(numObj[property] * 100) / 100).toFixed(2);
+    numObj[property + 'Round'] = (Math.round(numObj[property] * 100) / 100).toFixed(2);
   }
   return numObj;
 };
