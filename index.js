@@ -20,11 +20,13 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
       monthlyPrincPaid,
       summedAmortize = {};
 
-  /** Calculate monthly interest rate and monthly payment */
+  // Calculate monthly interest rate and monthly payment
   periodInt = (rate / 12) / 100;
   monthlyPayment = amount * (periodInt / (1 - Math.pow(1 + periodInt, -(totalTerm))));
+  // If zero or NaN is returned (i.e. if the rate is 0) calculate the payment without interest
+  monthlyPayment = monthlyPayment || amount / totalTerm;
 
-  /** Calculate the interest, principal, and remaining balance for each period*/
+  // Calculate the interest, principal, and remaining balance for each period
   var i = 0;
   while( i < amortizeTerm) {
     monthlyIntPaid = amount * periodInt;
@@ -53,7 +55,6 @@ var errorCheck = function(opts) {
   for (var key in opts) {
     if (opts.hasOwnProperty(key)) {
       if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] < 0) {
-        console.log(opts);
         throw new Error('Loan ' + key + ' must be a non-negative value.');
       }
     }

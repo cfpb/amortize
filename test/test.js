@@ -2,7 +2,8 @@ var amortize = require('../index.js');
 
 var testVal = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60}),
     testVal2 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60}),
-    testVal3 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60});
+    testVal3 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60}),
+    testVal4 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60});
 
 exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $36583.362108097754 in raw interest'] = function (test) {
   test.equal(testVal.interest, 36583.362108097754);
@@ -34,8 +35,13 @@ exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% in
   test.done();
 };
 
-exports['After 5 years a borrower borrowing nothing will owe nothing'] = function (test) {
+exports['After 5 years a borrower borrowing nothing will owe no interest'] = function (test) {
   test.equal(testVal3.interestRound, 0);
+  test.done();
+};
+
+exports['After 5 years a borrower borrowing without interest will owe no interest'] = function (test) {
+  test.equal(testVal4.interestRound, 0);
   test.done();
 };
 
