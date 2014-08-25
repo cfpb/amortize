@@ -52,8 +52,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
 var errorCheck = function(opts) {
   for (var key in opts) {
     if (opts.hasOwnProperty(key)) {
-      if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] <= 0) {
-        throw new Error('Specify all values as a positive number');
+      if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] < 0) {
+        console.log(opts);
+        throw new Error('Loan ' + key + ' must be a non-negative value.');
       }
     }
   }
