@@ -59,7 +59,6 @@ var errorCheck = function(opts) {
       }
     }
   }
-  return opts;
 };
 
 /**
@@ -68,10 +67,12 @@ var errorCheck = function(opts) {
  * @returns {object}
  */
 var roundNum = function(numObj) {
+  var tmp = {};
   for (var property in numObj) {
-    numObj[property + 'Round'] = (Math.round(numObj[property] * 100) / 100).toFixed(2);
+    tmp[property] = numObj[property];
+    tmp[property + 'Round'] = (Math.round(numObj[property] * 100) / 100).toFixed(2);
   }
-  return numObj;
+  return tmp;
 };
 
 /**
@@ -81,7 +82,7 @@ var roundNum = function(numObj) {
  * @returns {object}
  */
 var amortize = function(opts) {
-  opts = errorCheck(opts);
+  errorCheck(opts);
   var amortized = amortizationCalc(opts.amount, opts.rate, opts.totalTerm, opts.amortizeTerm);
   return roundNum(amortized);
 };

@@ -1,6 +1,6 @@
 {
   "name": "amortize",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.",
   "main": "index.js",
   "scripts": {
