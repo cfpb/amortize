@@ -32,11 +32,15 @@ This will return an object containing the interest, principal, balance, and mont
 ```javascript
 { 
   interest: 36583.362108097754,
+  monthlyInterest: 579.9810829318615,
   principal: 16546.146128485594,
+  monthlyPrincipal: 305.5107210111943,
   balance: 163453.85387151438,
   payment: 885.4918039430557,
   interestRound: '36583.36',
+  monthlyInterestRound: '579.98',
   principalRound: '16546.15',
+  monthlyPrincipalRound: '305.51',
   balanceRound: '163453.85',
   paymentRound: '885.49'
 }

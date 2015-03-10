@@ -30,6 +30,16 @@ exports['A borrower with a 30 year, $180,000 loan with a 4.25% interest rate wil
   test.done();
 };
 
+exports['A borrower with a 30 year, $180,000 loan with a 4.25% interest rate will pay $579.98 in interest monthly'] = function (test) {
+  test.equal(testVal.monthlyInterestRound, 579.98);
+  test.done();
+};
+
+exports['A borrower with a 30 year, $180,000 loan with a 4.25% interest rate will pay $305.51 in principal monthly'] = function (test) {
+  test.equal(testVal.monthlyPrincipalRound, 305.51);
+  test.done();
+};
+
 exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate will have paid $37,694.10 in interest'] = function (test) {
   test.equal(testVal2.interestRound, 37694.10);
   test.done();
