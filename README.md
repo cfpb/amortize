@@ -14,7 +14,7 @@ npm install amortize --save
 ```
 
 ## Usage
-Require the module and pass the amount of the loan, annual rate, the length of loan in months, and the length of amortization in months.
+Require the module and pass the amount of the loan, annual rate, the length of loan in months, and the length of time in months over which you would like to do the amortization calculation. For example for a loan amount of $180,000, an interest rate of 4.25%, a total term of 360 months (30 years) you could calculate the amortization over 60 months (5 years) with the following:
 
 ```javascript
 var amortize = require('amortize');
@@ -31,16 +31,18 @@ This will return an object containing the interest, principal, balance, and mont
 
 ```javascript
 { 
-  interest: 36583.362108097754,
-  principal: 16546.146128485594,
-  balance: 163453.85387151438,
-  payment: 885.4918039430557,
+  interest: 36583.362108097754,//the interest paid in the amortize peroid
+  principal: 16546.146128485594,//the principal paid in the amortize peroid
+  balance: 163453.85387151438,//the balance left after the amortize peroid
+  payment: 885.4918039430557,//the monthly payments that would be made
   interestRound: '36583.36',
   principalRound: '16546.15',
   balanceRound: '163453.85',
   paymentRound: '885.49'
 }
 ```
+
+
 
 ## Contributing
 
