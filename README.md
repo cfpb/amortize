@@ -5,6 +5,14 @@ amortize
 
 A node module to calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.
 
+### What is loan amortization?
+
+From [AskCFPB](http://www.consumerfinance.gov/askcfpb/771/what-amortization-and-how-could-it-affect-my-loan.html):
+
+> Amortization describes the process of gradual payment of the amount on your loan. For each of your monthly payments, a portion is applied towards the amount of the loan – the principal – and a portion of the payment is applied towards paying the finance charge – the interest.
+
+> A greater percentage of your monthly payment is applied to interest early in the life of the loan, and a greater percentage is applied to the principal at the end. Thus, the principal balance decreases slowly at first and more quickly closer to the end of the loan term. So if you default early in the life of the loan, you will still owe a significant amount on the principal because only a relatively small percentage of your monthly payments were applied to the principal.
+
 ## Installation
 
 First install [node.js](http://nodejs.org/). Then:
@@ -30,11 +38,11 @@ amortize({
 This will return an object containing the interest, principal, balance, and monthly payment as both raw and rounded values:
 
 ```javascript
-{ 
-  interest: 36583.362108097754,//the interest paid in the amortize peroid
-  principal: 16546.146128485594,//the principal paid in the amortize peroid
-  balance: 163453.85387151438,//the balance left after the amortize peroid
-  payment: 885.4918039430557,//the monthly payments that would be made
+{
+  interest: 36583.362108097754,  // the interest paid in the amortization period
+  principal: 16546.146128485594, // the principal paid in the amortization period
+  balance: 163453.85387151438, // the balance left after the amortization period
+  payment: 885.4918039430557, // the monthly payments that would be made
   interestRound: '36583.36',
   principalRound: '16546.15',
   balanceRound: '163453.85',
