@@ -7,7 +7,7 @@ A node module to calculate the interest paid, principal paid, remaining balance,
 
 ### What is loan amortization?
 
-From [AskCFPB](http://www.consumerfinance.gov/askcfpb/771/what-amortization-and-how-could-it-affect-my-loan.html):
+From [Ask CFPB](http://www.consumerfinance.gov/askcfpb/771/what-amortization-and-how-could-it-affect-my-loan.html):
 
 > Amortization describes the process of gradual payment of the amount on your loan. For each of your monthly payments, a portion is applied towards the amount of the loan – the principal – and a portion of the payment is applied towards paying the finance charge – the interest.
 
