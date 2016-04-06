@@ -25,6 +25,6 @@
     "url": "https://github.com/cfpb/amortize/issues"
   },
   "devDependencies": {
-    "nodeunit": "~0.8.6"
+    "nodeunit": "0.9.1"
   }
 }
