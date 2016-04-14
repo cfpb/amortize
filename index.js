@@ -1,4 +1,30 @@
 /**
+ * monthly payment calculations
+ * ===============================
+ * calculates the monthly payment
+ * calculates the number of payment periods
+ * @param {number} amount
+ * @param {number} rate
+ * @param {number} totalTerm
+ * @returns {object}
+ */
+var pmt = function(amount, rate, totalTerm) {
+  var pmtSummary = {},
+      periodInt,
+      monthlyPayment;
+  // Calculate monthly interest rate and monthly payment
+  periodInt = (rate / 12) / 100;
+  monthlyPayment = amount * (periodInt / (1 - Math.pow(1 + periodInt, -(totalTerm))));
+  // If zero or NaN is returned (i.e. if the rate is 0) calculate the payment without interest
+  monthlyPayment = monthlyPayment || amount / totalTerm;
+
+  pmtSummary.monthlyPayment = monthlyPayment;
+  pmtSummary.periodInt = periodInt;
+
+  return pmtSummary;
+}
+
+/**
  * amortization table calculations
  * ===============================
  * calculates the monthly payment
@@ -12,7 +38,8 @@
  * @returns {object}
  */
 var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
-  var periodInt,
+  var pmtSummary,
+      periodInt,
       monthlyPayment,
       summedInterest = 0,
       summedPrincipal = 0,
@@ -20,11 +47,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
       monthlyPrincPaid,
       summedAmortize = {};
 
-  // Calculate monthly interest rate and monthly payment
-  periodInt = (rate / 12) / 100;
-  monthlyPayment = amount * (periodInt / (1 - Math.pow(1 + periodInt, -(totalTerm))));
-  // If zero or NaN is returned (i.e. if the rate is 0) calculate the payment without interest
-  monthlyPayment = monthlyPayment || amount / totalTerm;
+  pmtSummary = pmt(amount, rate, totalTerm);
+  periodInt = pmtSummary.periodInt;
+  monthlyPayment = pmtSummary.monthlyPayment;
 
   // Calculate the interest, principal, and remaining balance for each period
   var i = 0;
