@@ -9,16 +9,18 @@
  * @param {number} rate
  * @param {number} totalTerm
  * @param {number} amortizeTerm
+ * @param {number} principalPayment
  * @returns {object}
  */
-var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
+var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principalPayment) {
   var periodInt,
       monthlyPayment,
       summedInterest = 0,
       summedPrincipal = 0,
       monthlyIntPaid,
       monthlyPrincPaid,
-      summedAmortize = {};
+      summedAmortize = {},
+      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0;
 
   // Calculate monthly interest rate and monthly payment
   periodInt = (rate / 12) / 100;
@@ -29,18 +31,22 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm) {
   // Calculate the interest, principal, and remaining balance for each period
   var i = 0;
   while( i < amortizeTerm) {
+    if(amount < 0)
+      break;
     monthlyIntPaid = amount * periodInt;
-    monthlyPrincPaid = monthlyPayment - monthlyIntPaid;
+    monthlyPrincPaid = monthlyPayment - monthlyIntPaid + principalPayment;
     summedInterest = summedInterest + monthlyIntPaid;
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
     amount = amount - monthlyPrincPaid;
     i += 1;
   }
 
+  summedAmortize.termsSaved = amortizeTerm - i;
+  summedAmortize.principalPaymentsTotal = i * principalPayment;
   summedAmortize.interest = summedInterest;
   summedAmortize.principal = summedPrincipal;
   summedAmortize.balance = amount;
-  summedAmortize.payment = monthlyPayment;
+  summedAmortize.payment = monthlyPayment + principalPayment;
 
   return summedAmortize;
 
@@ -78,12 +84,12 @@ var roundNum = function(numObj) {
 /**
  * Pass values and return output
  * @param {object} amount, rate, totalTerm, amortizeTerm
- * @example amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60})
+ * @example amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, principalPayment: 200})
  * @returns {object}
  */
 var amortize = function(opts) {
   errorCheck(opts);
-  var amortized = amortizationCalc(opts.amount, opts.rate, opts.totalTerm, opts.amortizeTerm);
+  var amortized = amortizationCalc(opts.amount, opts.rate, opts.totalTerm, opts.amortizeTerm, opts.principalPayment);
   return roundNum(amortized);
 };
 
