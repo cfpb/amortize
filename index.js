@@ -12,7 +12,7 @@
  * @param {number} principalPayment
  * @returns {object}
  */
-var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principalPayment) {
+var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principalPayment, repaymentType) {
   var periodInt,
       monthlyPayment,
       summedInterest = 0,
@@ -20,20 +20,31 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
       monthlyIntPaid,
       monthlyPrincPaid,
       summedAmortize = {},
+      montlyPrincipalPayment = 0,
       principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0;
 
   // Calculate monthly interest rate and monthly payment
   periodInt = (rate / 12) / 100;
-  monthlyPayment = amount * (periodInt / (1 - Math.pow(1 + periodInt, -(totalTerm))));
-  // If zero or NaN is returned (i.e. if the rate is 0) calculate the payment without interest
-  monthlyPayment = monthlyPayment || amount / totalTerm;
-
+  
+  if (repaymentType == "amortize") {
+    monthlyPayment = amount * (periodInt / (1 - Math.pow(1 + periodInt, -(totalTerm))));
+    // If zero or NaN is returned (i.e. if the rate is 0) calculate the payment without interest
+    monthlyPayment = monthlyPayment || amount / totalTerm;  
+  } else if (repaymentType == "equal-principal-payment") {
+    montlyPrincipalPayment = amount / totalTerm;
+  } else {
+    return {error: "unsupported repaymentType"};
+  }
+  
   // Calculate the interest, principal, and remaining balance for each period
   var i = 0;
   while( i < amortizeTerm) {
     if(amount < 0)
       break;
     monthlyIntPaid = amount * periodInt;
+    if (repaymentType == "equal-principal-payment") {
+      monthlyPayment = montlyPrincipalPayment + monthlyIntPaid;
+    }
     monthlyPrincPaid = monthlyPayment - monthlyIntPaid + principalPayment;
     summedInterest = summedInterest + monthlyIntPaid;
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
@@ -60,7 +71,11 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
 var errorCheck = function(opts) {
   for (var key in opts) {
     if (opts.hasOwnProperty(key)) {
-      if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] < 0) {
+      if (key == "repaymentType") {
+        if (!["amortize", "equal-principal-payment"].includes(opts[key]) ) {
+          throw new Error("repaymentType must be one of: 'amortize', 'equal-principal-payment'")
+        }
+      } else if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] < 0) {
         throw new Error('Loan ' + key + ' must be a non-negative value.');
       }
     }
@@ -89,7 +104,13 @@ var roundNum = function(numObj) {
  */
 var amortize = function(opts) {
   errorCheck(opts);
-  var amortized = amortizationCalc(opts.amount, opts.rate, opts.totalTerm, opts.amortizeTerm, opts.principalPayment);
+  var amortized = amortizationCalc(
+    opts.amount, 
+    opts.rate, 
+    opts.totalTerm, 
+    opts.amortizeTerm, 
+    opts.principalPayment,
+    opts.repaymentType || 'amortize');
   return roundNum(amortized);
 };
 
