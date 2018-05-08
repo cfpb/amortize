@@ -39,12 +39,12 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   }
   
   // Calculate the interest, principal, and remaining balance for each period
-  let boundedMonthlyPayment;
+  let boundedMonthlyPayment, termOffset;
   var i = 0;
   while( i < amortizeTerm) {
     if(amount < 0)
       break;
-    let termOffset = (i == 0 ? partialMonthOffest : 1);
+    termOffset = (i == 0 ? partialMonthOffest : 1);
     monthlyIntPaid = amount * periodInt * termOffset;
     if (repaymentType == "equal-principal-payment") {
       monthlyPayment = montlyPrincipalPayment * termOffset + monthlyIntPaid;
@@ -62,7 +62,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   summedAmortize.interest = summedInterest;
   summedAmortize.principal = summedPrincipal;
   summedAmortize.balance = amount;
-  summedAmortize.payment = boundedMonthlyPayment + principalPayment;
+  summedAmortize.payment = boundedMonthlyPayment * termOffset + principalPayment;
 
   return summedAmortize;
 
