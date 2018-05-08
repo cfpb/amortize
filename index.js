@@ -10,9 +10,11 @@
  * @param {number} totalTerm
  * @param {number} amortizeTerm
  * @param {number} principalPayment
+ * @param {string} repaymentType
+ * @param {number} partialMonthOffest - use this if you need to offest the beginig of the payment
  * @returns {object}
  */
-var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principalPayment, repaymentType) {
+var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principalPayment, repaymentType, partialMonthOffest) {
   var periodInt,
       monthlyPayment,
       summedInterest = 0,
@@ -37,15 +39,21 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   }
   
   // Calculate the interest, principal, and remaining balance for each period
+  let boundedMonthlyPayment;
   var i = 0;
   while( i < amortizeTerm) {
+    console.log(`Iteration: ${i}`);
     if(amount < 0)
       break;
-    monthlyIntPaid = amount * periodInt;
+    let termOffset = (i == 0 ? partialMonthOffest : 1);
+    console.log(termOffset);
+    monthlyIntPaid = amount * periodInt * termOffset;
     if (repaymentType == "equal-principal-payment") {
-      monthlyPayment = montlyPrincipalPayment + monthlyIntPaid;
+      monthlyPayment = montlyPrincipalPayment * termOffset + monthlyIntPaid;
     }
-    monthlyPrincPaid = monthlyPayment - monthlyIntPaid + principalPayment;
+    boundedMonthlyPayment = Math.min(amount + monthlyIntPaid, monthlyPayment)
+    console.log(boundedMonthlyPayment);
+    monthlyPrincPaid = boundedMonthlyPayment * termOffset - monthlyIntPaid + principalPayment;
     summedInterest = summedInterest + monthlyIntPaid;
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
     amount = amount - monthlyPrincPaid;
@@ -57,7 +65,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   summedAmortize.interest = summedInterest;
   summedAmortize.principal = summedPrincipal;
   summedAmortize.balance = amount;
-  summedAmortize.payment = monthlyPayment + principalPayment;
+  summedAmortize.payment = boundedMonthlyPayment + principalPayment;
 
   return summedAmortize;
 
@@ -110,7 +118,8 @@ var amortize = function(opts) {
     opts.totalTerm, 
     opts.amortizeTerm, 
     opts.principalPayment,
-    opts.repaymentType || 'amortize');
+    opts.repaymentType || 'amortize',
+    opts.partialMonthOffest || 1);
   return roundNum(amortized);
 };
 
