@@ -42,17 +42,14 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   let boundedMonthlyPayment;
   var i = 0;
   while( i < amortizeTerm) {
-    console.log(`Iteration: ${i}`);
     if(amount < 0)
       break;
     let termOffset = (i == 0 ? partialMonthOffest : 1);
-    console.log(termOffset);
     monthlyIntPaid = amount * periodInt * termOffset;
     if (repaymentType == "equal-principal-payment") {
       monthlyPayment = montlyPrincipalPayment * termOffset + monthlyIntPaid;
     }
-    boundedMonthlyPayment = Math.min(amount + monthlyIntPaid, monthlyPayment)
-    console.log(boundedMonthlyPayment);
+    boundedMonthlyPayment = Math.min(amount + monthlyIntPaid, monthlyPayment);
     monthlyPrincPaid = boundedMonthlyPayment * termOffset - monthlyIntPaid + principalPayment;
     summedInterest = summedInterest + monthlyIntPaid;
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
