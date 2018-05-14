@@ -47,7 +47,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     termOffset = (i == 0 ? partialMonthOffest : 1);
     monthlyIntPaid = amount * periodInt * termOffset;
     if (repaymentType == "equal-principal-payment") {
-      monthlyPayment = montlyPrincipalPayment * termOffset + monthlyIntPaid;
+      monthlyPayment = montlyPrincipalPayment + monthlyIntPaid / termOffset;
     }
     boundedMonthlyPayment = Math.min(amount + monthlyIntPaid, monthlyPayment);
     monthlyPrincPaid = boundedMonthlyPayment * termOffset - monthlyIntPaid + principalPayment;
@@ -56,14 +56,15 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     amount = amount - monthlyPrincPaid;
     i += 1;
   }
-
+  
   summedAmortize.termsSaved = amortizeTerm - i;
   summedAmortize.principalPaymentsTotal = i * principalPayment;
   summedAmortize.interest = summedInterest;
   summedAmortize.principal = summedPrincipal;
   summedAmortize.balance = amount;
   summedAmortize.payment = boundedMonthlyPayment * termOffset + principalPayment;
-
+  summedAmortize.montlyPrincipalPayment = montlyPrincipalPayment;
+  
   return summedAmortize;
 
 };
