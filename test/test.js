@@ -52,6 +52,11 @@ exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% in
   test.done();
 };
 
+exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will start paying more in principal after 56 months'] = function (test) {
+  test.equal(testVal6.principalBreakingTerm, 56);
+  test.done();
+};
+
 exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will have saved 109 Months'] = function (test) {
   test.equal(testVal6.termsSaved, 109);
   test.done();

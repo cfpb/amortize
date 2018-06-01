@@ -20,7 +20,8 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
       monthlyIntPaid,
       monthlyPrincPaid,
       summedAmortize = {},
-      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0;
+      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0,
+      principalBreakingTerm = 0;
 
   // Calculate monthly interest rate and monthly payment
   periodInt = (rate / 12) / 100;
@@ -33,12 +34,15 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   while( i < amortizeTerm) {
     if(amount < 0)
       break;
+    i += 1;
     monthlyIntPaid = amount * periodInt;
     monthlyPrincPaid = monthlyPayment - monthlyIntPaid + principalPayment;
     summedInterest = summedInterest + monthlyIntPaid;
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
     amount = amount - monthlyPrincPaid;
-    i += 1;
+    if(!principalBreakingTerm && monthlyPrincPaid > monthlyIntPaid){
+      principalBreakingTerm = i;
+    }
   }
 
   summedAmortize.termsSaved = amortizeTerm - i;
@@ -47,6 +51,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   summedAmortize.principal = summedPrincipal;
   summedAmortize.balance = amount;
   summedAmortize.payment = monthlyPayment + principalPayment;
+  summedAmortize.principalBreakingTerm = principalBreakingTerm;
 
   return summedAmortize;
 
