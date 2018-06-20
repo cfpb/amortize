@@ -45,6 +45,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     if(amount < 0)
       break;
     termOffset = (i == 0 ? partialMonthOffest : 1);
+    // console.log(`amount: ${amount}, periodInt: ${periodInt}, termOffset: ${termOffset}`);
     monthlyIntPaid = amount * periodInt * termOffset;
     if (repaymentType == "equal-principal-payment") {
       monthlyPayment = montlyPrincipalPayment + monthlyIntPaid / termOffset;
@@ -57,13 +58,21 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     i += 1;
   }
   
+  summedAmortize.termOffset = termOffset;
   summedAmortize.termsSaved = amortizeTerm - i;
   summedAmortize.principalPaymentsTotal = i * principalPayment;
   summedAmortize.interest = summedInterest;
   summedAmortize.principal = summedPrincipal;
+  summedAmortize.preBalance = amount + monthlyPrincPaid;
   summedAmortize.balance = amount;
+  summedAmortize.basePayment = monthlyPayment;
+  summedAmortize.baseBoundedPayment = boundedMonthlyPayment;
   summedAmortize.payment = boundedMonthlyPayment * termOffset + principalPayment;
   summedAmortize.montlyPrincipalPayment = montlyPrincipalPayment;
+  summedAmortize.term = {
+    principal: monthlyPrincPaid,
+    interest: monthlyIntPaid
+  }
   
   return summedAmortize;
 
