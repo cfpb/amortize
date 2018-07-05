@@ -226,6 +226,14 @@ exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% in
   test.done();
 };
 
+exports['Throw an error if bad repaymentType is passed'] = function (test) {
+  test.throws(function() {
+    amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'banana'});
+  },
+  Error, "repaymentType must be one of: 'amortize', 'equal-principal-payment'");
+  test.done();
+};
+
 exports['Throw an error if a string is passed'] = function (test) {
   test.throws(function() {
     amortize({amount: 'Gregor Samsa', rate: 4.25, totalTerm: 360, amortizeTerm: 60});

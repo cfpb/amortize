@@ -87,7 +87,7 @@ var errorCheck = function(opts) {
   for (var key in opts) {
     if (opts.hasOwnProperty(key)) {
       if (key == "repaymentType") {
-        if (!["amortize", "equal-principal-payment"].includes(opts[key]) ) {
+        if ( ["amortize", "equal-principal-payment"].indexOf(opts[key]) === -1 ) {
           throw new Error("repaymentType must be one of: 'amortize', 'equal-principal-payment'")
         }
       } else if (typeof opts[key] === 'undefined' || isNaN(parseFloat(opts[key])) || opts[key] < 0) {

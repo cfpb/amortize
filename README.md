@@ -1,7 +1,7 @@
 amortize
 ========
 
-[![Build Status](https://travis-ci.org/cfpb/amortize.svg?branch=master)](https://travis-ci.org/cfpb/amortize)
+[![Build Status](https://travis-ci.org/cfpb/amortize.svg?branch=master)](https://travis-ci.org/cfpb/amortize) [![codecov](https://codecov.io/gh/cfpb/amortize/branch/master/graph/badge.svg)](https://codecov.io/gh/cfpb/amortize)
 
 A node module to calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.
 
