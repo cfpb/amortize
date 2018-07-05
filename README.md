@@ -50,6 +50,18 @@ This will return an object containing the interest, principal, balance, and mont
 }
 ```
 
+This module also supports straightline amortization schedules with equal principal payments:
+
+```javascript
+amortize({
+  amount: 180000,
+  rate: 4.25,
+  totalTerm: 360,
+  amortizeTerm: 60,
+  repaymentType: 'equal-principal-payment',
+  partialMonthOffset: 0.5 // optional month offset
+});
+```
 
 
 ## Contributing

@@ -6,27 +6,27 @@ var testVal = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm
     testVal4 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60}),
     testVal5 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0}),
     testVal6 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200});
-    
+
 var testVal7 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
     testVal8 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
     testVal9 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
     testVal10 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
     testVal11 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment'}),
     testVal12 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment'});
-    
-var testVal13 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, partialMonthOffest: 0.5}),
-    testVal14 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffest: 0.5}),
-    testVal15 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffest: 0.5}),
-    testVal16 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, partialMonthOffest: 0.5}),
-    testVal17 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, partialMonthOffest: 0.5}),
-    testVal18 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, partialMonthOffest: 0.5});
-    
-var testVal19 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffest: 0.5}),
-    testVal20 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffest: 0.5}),
-    testVal21 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffest: 0.5}),
-    testVal22 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffest: 0.5}),
-    testVal23 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment', partialMonthOffest: 0.5}),
-    testVal24 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment', partialMonthOffest: 0.5});
+
+var testVal13 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
+    testVal14 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
+    testVal15 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
+    testVal16 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
+    testVal17 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, partialMonthOffset: 0.5}),
+    testVal18 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, partialMonthOffset: 0.5});
+
+var testVal19 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
+    testVal20 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
+    testVal21 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
+    testVal22 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
+    testVal23 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
+    testVal24 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
 
 // Amortize
 
@@ -181,28 +181,28 @@ exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% in
 
 // equal principal payment with partial month offset
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,908.537109375 in raw interest'] = function (test) {
-  test.equal(testVal19.interest, 34908.537109375);
+exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,849.11458333333 in raw interest'] = function (test) {
+  test.equal(testVal19.interest, 34849.11458333333);
   test.done();
 };
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,908.54 in interest'] = function (test) {
-  test.equal(testVal19.interestRound, 34908.54);
+exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,849.11 in interest'] = function (test) {
+  test.equal(testVal19.interestRound, 34849.11);
   test.done();
 };
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $29,465.63 in principal'] = function (test) {
-  test.equal(testVal19.principalRound, 29465.63);
+exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $29,750.00 in principal'] = function (test) {
+  test.equal(testVal19.principalRound, 29750.00);
   test.done();
 };
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will owe $150,534.38'] = function (test) {
-  test.equal(testVal19.balanceRound, 150534.38);
+exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will owe $150,250.00'] = function (test) {
+  test.equal(testVal19.balanceRound, 150250.00);
   test.done();
 };
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and equal principal payment and partial month offset of 0.5 will have paid $35,936.27 in interest'] = function (test) {
-  test.equal(testVal20.interestRound, 35936.27);
+exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and equal principal payment and partial month offset of 0.5 will have paid $35,874.09 in interest'] = function (test) {
+  test.equal(testVal20.interestRound, 35874.09);
   test.done();
 };
 
@@ -216,8 +216,8 @@ exports['After 5 years a borrower borrowing without interest and equal principal
   test.done();
 };
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 paying $200 extra per month will have saved $23,699.58 in interest'] = function (test) {
-  test.equal((testVal23.interestRound-testVal6.interestRound).toFixed(2), 23699.58);
+exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 paying $200 extra per month will have saved $23,338.00 in interest'] = function (test) {
+  test.equal((testVal23.interestRound-testVal6.interestRound).toFixed(2), 23338.00);
   test.done();
 };
 
