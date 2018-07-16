@@ -1,10 +1,11 @@
 {
   "name": "amortize",
-  "version": "0.4.0",
+  "version": "1.0.2",
   "description": "Calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.",
   "main": "index.js",
   "scripts": {
-    "test": "nodeunit test/test.js"
+  "test": "nodeunit test/test.js",
+  "codecov": "istanbul cover test/test.js && codecov"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
     "url": "https://github.com/cfpb/amortize/issues"
   },
   "devDependencies": {
-    "nodeunit": "0.9.1"
+    "codecov": "3.0.2",
+    "istanbul": "0.4.5",
+    "nodeunit": "0.11.2"
   }
 }

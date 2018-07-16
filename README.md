@@ -1,7 +1,7 @@
 amortize
 ========
 
-[![Build Status](https://travis-ci.org/cfpb/amortize.svg?branch=master)](https://travis-ci.org/cfpb/amortize)
+[![Build Status](https://travis-ci.org/cfpb/amortize.svg?branch=master)](https://travis-ci.org/cfpb/amortize) [![codecov](https://codecov.io/gh/cfpb/amortize/branch/master/graph/badge.svg)](https://codecov.io/gh/cfpb/amortize)
 
 A node module to calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.
 
@@ -50,6 +50,18 @@ This will return an object containing the interest, principal, balance, and mont
 }
 ```
 
+This module also supports straightline amortization schedules with equal principal payments:
+
+```javascript
+amortize({
+  amount: 180000,
+  rate: 4.25,
+  totalTerm: 360,
+  amortizeTerm: 60,
+  repaymentType: 'equal-principal-payment',
+  partialMonthOffset: 0.5 // optional month offset
+});
+```
 
 
 ## Contributing
