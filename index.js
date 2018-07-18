@@ -22,8 +22,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
       monthlyIntPaid,
       monthlyPrincPaid,
       summedAmortize = {},
-      montlyPrincipalPayment = 0,
-      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0;
+      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0,
+      principalBreakingTerm = 0,
+      montlyPrincipalPayment = 0;
 
   // Calculate monthly interest rate and monthly payment
   periodInt = (rate / 12) / 100;
@@ -44,6 +45,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   while( i < amortizeTerm) {
     if(amount < 0)
       break;
+    i += 1;
     termOffset = (i == 0 ? partialMonthOffset : 1);
     // console.log(`amount: ${amount}, periodInt: ${periodInt}, termOffset: ${termOffset}`);
     monthlyIntPaid = amount * periodInt * termOffset;
@@ -55,7 +57,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     summedInterest = summedInterest + monthlyIntPaid;
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
     amount = amount - monthlyPrincPaid;
-    i += 1;
+    if(!principalBreakingTerm && monthlyPrincPaid > monthlyIntPaid){
+      principalBreakingTerm = i;
+    }
   }
 
   summedAmortize.termOffset = termOffset;
@@ -65,6 +69,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   summedAmortize.principal = summedPrincipal;
   summedAmortize.preBalance = amount + monthlyPrincPaid;
   summedAmortize.balance = amount;
+  summedAmortize.principalBreakingTerm = principalBreakingTerm;
   summedAmortize.basePayment = monthlyPayment;
   summedAmortize.baseBoundedPayment = boundedMonthlyPayment;
   summedAmortize.payment = boundedMonthlyPayment * termOffset + principalPayment;

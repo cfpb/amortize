@@ -4,8 +4,8 @@
   "description": "Calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.",
   "main": "index.js",
   "scripts": {
-    "test": "nodeunit test/test.js",
-    "codecov": "istanbul cover test/test.js && codecov"
+  "test": "nodeunit test/test.js",
+  "codecov": "istanbul cover test/test.js && codecov"
   },
   "repository": {
     "type": "git",
