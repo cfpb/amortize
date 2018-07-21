@@ -22,8 +22,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
       monthlyIntPaid,
       monthlyPrincPaid,
       summedAmortize = {},
-      montlyPrincipalPayment = 0,
-      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0;
+      monthlyPrincipalPayment = 0,
+      principalPayment = (!!principalPayment) ? parseInt(principalPayment,10) : 0,
+      principalBreakingTerm = 0;
 
   // Calculate monthly interest rate and monthly payment
   periodInt = (rate / 12) / 100;
@@ -33,7 +34,7 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     // If zero or NaN is returned (i.e. if the rate is 0) calculate the payment without interest
     monthlyPayment = monthlyPayment || amount / totalTerm;
   } else if (repaymentType == "equal-principal-payment") {
-    montlyPrincipalPayment = amount / totalTerm;
+    monthlyPrincipalPayment = amount / totalTerm;
   } else {
     return {error: "unsupported repaymentType"};
   }
@@ -45,10 +46,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     if(amount < 0)
       break;
     termOffset = (i == 0 ? partialMonthOffset : 1);
-    // console.log(`amount: ${amount}, periodInt: ${periodInt}, termOffset: ${termOffset}`);
     monthlyIntPaid = amount * periodInt * termOffset;
     if (repaymentType == "equal-principal-payment") {
-      monthlyPayment = montlyPrincipalPayment + monthlyIntPaid / termOffset;
+      monthlyPayment = monthlyPrincipalPayment + monthlyIntPaid / termOffset;
     }
     boundedMonthlyPayment = Math.min(amount + monthlyIntPaid, monthlyPayment);
     monthlyPrincPaid = boundedMonthlyPayment * termOffset - monthlyIntPaid + principalPayment;
@@ -56,6 +56,9 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
     summedPrincipal = summedPrincipal + monthlyPrincPaid;
     amount = amount - monthlyPrincPaid;
     i += 1;
+    if(!principalBreakingTerm && monthlyPrincPaid > monthlyIntPaid){
+      principalBreakingTerm = i;
+    }
   }
 
   summedAmortize.termOffset = termOffset;
@@ -68,7 +71,8 @@ var amortizationCalc = function(amount, rate, totalTerm, amortizeTerm, principal
   summedAmortize.basePayment = monthlyPayment;
   summedAmortize.baseBoundedPayment = boundedMonthlyPayment;
   summedAmortize.payment = boundedMonthlyPayment * termOffset + principalPayment;
-  summedAmortize.montlyPrincipalPayment = montlyPrincipalPayment;
+  summedAmortize.monthlyPrincipalPayment = monthlyPrincipalPayment;
+  summedAmortize.principalBreakingTerm = principalBreakingTerm;
   summedAmortize.term = {
     principal: monthlyPrincPaid,
     interest: monthlyIntPaid

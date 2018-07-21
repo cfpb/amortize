@@ -80,6 +80,11 @@ exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% in
   test.done();
 };
 
+exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will start paying more in principal after 56 months'] = function (test) {
+  test.equal(testVal6.principalBreakingTerm, 56);
+  test.done();
+};
+
 // equal principal payment
 
 exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $35115.625 in raw interest'] = function (test) {
