@@ -4,8 +4,7 @@
   "description": "Calculate the interest paid, principal paid, remaining balance, and monthly payment of a loan.",
   "main": "index.js",
   "scripts": {
-    "test": "nodeunit test/test.js",
-    "codecov": "istanbul cover test/test.js && codecov"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,8 +25,6 @@
     "url": "https://github.com/cfpb/amortize/issues"
   },
   "devDependencies": {
-    "codecov": "3.0.2",
-    "istanbul": "0.4.5",
-    "nodeunit": "0.11.2"
+    "jest": "^29.7.0"
   }
 }

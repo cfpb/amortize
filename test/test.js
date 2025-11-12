@@ -1,256 +1,207 @@
-var amortize = require('../index.js');
+const amortize = require('../index.js');
 
-var testVal = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60}),
-    testVal2 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60}),
-    testVal3 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60}),
-    testVal4 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60}),
-    testVal5 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0}),
-    testVal6 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200});
+const testVal = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60});
+const testVal2 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60});
+const testVal3 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60});
+const testVal4 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60});
+const testVal5 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0});
+const testVal6 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200});
 
-var testVal7 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
-    testVal8 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
-    testVal9 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
-    testVal10 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'}),
-    testVal11 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment'}),
-    testVal12 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment'});
+const testVal7 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'});
+const testVal8 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'});
+const testVal9 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'});
+const testVal10 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment'});
+const testVal11 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment'});
+const testVal12 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment'});
 
-var testVal13 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
-    testVal14 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
-    testVal15 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
-    testVal16 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5}),
-    testVal17 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, partialMonthOffset: 0.5}),
-    testVal18 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, partialMonthOffset: 0.5});
+const testVal13 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5});
+const testVal14 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5});
+const testVal15 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5});
+const testVal16 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, partialMonthOffset: 0.5});
+const testVal17 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, partialMonthOffset: 0.5});
+const testVal18 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, partialMonthOffset: 0.5});
 
-var testVal19 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
-    testVal20 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
-    testVal21 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
-    testVal22 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
-    testVal23 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5}),
-    testVal24 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
+const testVal19 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
+const testVal20 = amortize({amount: 180000, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
+const testVal21 = amortize({amount: 0, rate: 4.375, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
+const testVal22 = amortize({amount: 180000, rate: 0, totalTerm: 360, amortizeTerm: 60, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
+const testVal23 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 0, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
+const testVal24 = amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 360, principalPayment: 200, repaymentType: 'equal-principal-payment', partialMonthOffset: 0.5});
 
 // Amortize
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $36583.362108097754 in raw interest'] = function (test) {
-  test.equal(testVal.interest, 36583.362108097754);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $36583.362108097754 in raw interest', () => {
+  expect(testVal.interest).toBeCloseTo(36583.362108097754, 10);
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $36,583.36 in interest'] = function (test) {
-  test.equal(testVal.interestRound, 36583.36);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $36,583.36 in interest', () => {
+  expect(testVal.interestRound).toBe('36583.36');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $16,546.15 in principal'] = function (test) {
-  test.equal(testVal.principalRound, 16546.15);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will have paid $16,546.15 in principal', () => {
+  expect(testVal.principalRound).toBe('16546.15');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will owe $163,453.85'] = function (test) {
-  test.equal(testVal.balanceRound, 163453.85);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate will owe $163,453.85', () => {
+  expect(testVal.balanceRound).toBe('163453.85');
+});
 
-exports['A borrower with a 30 year, $180,000 loan with a 4.25% interest rate will pay $885.49 monthly'] = function (test) {
-  test.equal(testVal.paymentRound, 885.49);
-  test.done();
-};
+test('A borrower with a 30 year, $180,000 loan with a 4.25% interest rate will pay $885.49 monthly', () => {
+  expect(testVal.paymentRound).toBe('885.49');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate will have paid $37,694.10 in interest'] = function (test) {
-  test.equal(testVal2.interestRound, 37694.10);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate will have paid $37,694.10 in interest', () => {
+  expect(testVal2.interestRound).toBe('37694.10');
+});
 
-exports['After 5 years a borrower borrowing nothing will owe no interest'] = function (test) {
-  test.equal(testVal3.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing nothing will owe no interest', () => {
+  expect(testVal3.interestRound).toBe('0.00');
+});
 
-exports['After 5 years a borrower borrowing without interest will owe no interest'] = function (test) {
-  test.equal(testVal4.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing without interest will owe no interest', () => {
+  expect(testVal4.interestRound).toBe('0.00');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will have saved $47,047.19 in interest'] = function (test) {
-  test.equal((testVal5.interestRound-testVal6.interestRound).toFixed(2), 47047.19);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will have saved $47,047.19 in interest', () => {
+  expect((parseFloat(testVal5.interestRound) - parseFloat(testVal6.interestRound)).toFixed(2)).toBe('47047.19');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will have saved 109 Months'] = function (test) {
-  test.equal(testVal6.termsSaved, 109);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will have saved 109 Months', () => {
+  expect(testVal6.termsSaved).toBe(109);
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will start paying more in principal after 56 months'] = function (test) {
-  test.equal(testVal6.principalBreakingTerm, 56);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate paying $200 extra per month will start paying more in principal after 56 months', () => {
+  expect(testVal6.principalBreakingTerm).toBe(56);
+});
 
 // equal principal payment
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $35115.625 in raw interest'] = function (test) {
-  test.equal(testVal7.interest, 35115.625);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $35115.625 in raw interest', () => {
+  expect(testVal7.interest).toBeCloseTo(35115.625, 10);
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $35,115.63 in interest'] = function (test) {
-  test.equal(testVal7.interestRound, 35115.63);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $35,115.63 in interest', () => {
+  expect(testVal7.interestRound).toBe('35115.63');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $30,000.00 in principal'] = function (test) {
-  test.equal(testVal7.principalRound, 30000.00);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will have paid $30,000.00 in principal', () => {
+  expect(testVal7.principalRound).toBe('30000.00');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will owe $150,000.00'] = function (test) {
-  test.equal(testVal7.balanceRound, 150000.00);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments will owe $150,000.00', () => {
+  expect(testVal7.balanceRound).toBe('150000.00');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and equal principal payments will have paid $36,148.44 in interest'] = function (test) {
-  test.equal(testVal8.interestRound, 36148.44);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and equal principal payments will have paid $36,148.44 in interest', () => {
+  expect(testVal8.interestRound).toBe('36148.44');
+});
 
-exports['After 5 years a borrower borrowing nothing with equal principal payments will owe no interest'] = function (test) {
-  test.equal(testVal9.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing nothing with equal principal payments will owe no interest', () => {
+  expect(testVal9.interestRound).toBe('0.00');
+});
 
-exports['After 5 years a borrower borrowing without interest and equal principal payments will owe no interest'] = function (test) {
-  test.equal(testVal10.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing without interest and equal principal payments will owe no interest', () => {
+  expect(testVal10.interestRound).toBe('0.00');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments paying $200 extra per month will have saved $23,338.89 in interest'] = function (test) {
-  test.equal((testVal11.interestRound-testVal6.interestRound).toFixed(2), 23338.89);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments paying $200 extra per month will have saved $23,338.89 in interest', () => {
+  expect((parseFloat(testVal11.interestRound) - parseFloat(testVal6.interestRound)).toFixed(2)).toBe('23338.89');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments paying $200 extra per month will have saved 102 Months'] = function (test) {
-  test.equal(testVal12.termsSaved, 102);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payments paying $200 extra per month will have saved 102 Months', () => {
+  expect(testVal12.termsSaved).toBe(102);
+});
 
 // amortize with partial month offset
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will have paid $36293.37156663184 in raw interest'] = function (test) {
-  test.equal(testVal13.interest, 36293.37156663184);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will have paid $36,293.37 in interest', () => {
+  expect(testVal13.interestRound).toBe('36293.37');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will have paid $36,293.37 in interest'] = function (test) {
-  test.equal(testVal13.interestRound, 36293.37);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will have paid $16,393.39 in principal', () => {
+  expect(testVal13.principalRound).toBe('16393.39');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will have paid $16,393.39 in principal'] = function (test) {
-  test.equal(testVal13.principalRound, 16393.39);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will owe $163,606.61', () => {
+  expect(testVal13.balanceRound).toBe('163606.61');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will owe $163,606.61'] = function (test) {
-  test.equal(testVal13.balanceRound, 163606.61);
-  test.done();
-};
+test('A borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will pay $885.49 monthly after the first month and not including the last month', () => {
+  expect(testVal13.paymentRound).toBe('885.49');
+});
 
-exports['A borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 will pay $885.49 monthly after the first month and not including the last month'] = function (test) {
-  test.equal(testVal13.paymentRound, 885.49);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and partial month offset of 0.5 will have paid $37,395.01 in interest', () => {
+  expect(testVal14.interestRound).toBe('37395.01');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and partial month offset of 0.5 will have paid $37,395.01 in interest'] = function (test) {
-  test.equal(testVal14.interestRound, 37395.01);
-  test.done();
-};
+test('After 5 years a borrower borrowing nothing with partial month offset of 0.5 will owe no interest', () => {
+  expect(testVal15.interestRound).toBe('0.00');
+});
 
-exports['After 5 years a borrower borrowing nothing with partial month offset of 0.5 will owe no interest'] = function (test) {
-  test.equal(testVal15.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing without interest and partial month offset of 0.5 will owe no interest', () => {
+  expect(testVal16.interestRound).toBe('0.00');
+});
 
-exports['After 5 years a borrower borrowing without interest and partial month offset of 0.5 will owe no interest'] = function (test) {
-  test.equal(testVal16.interestRound, 0);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 paying $200 extra per month will have saved $47,045.63 in interest', () => {
+  expect((parseFloat(testVal17.interestRound) - parseFloat(testVal6.interestRound)).toFixed(2)).toBe('47045.63');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 paying $200 extra per month will have saved $47,045.63 in interest'] = function (test) {
-  test.equal((testVal17.interestRound-testVal6.interestRound).toFixed(2), 47045.63);
-  test.done();
-};
-
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 paying $200 extra per month will have saved 109 Months'] = function (test) {
-  test.equal(testVal18.termsSaved, 109);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and partial month offset of 0.5 paying $200 extra per month will have saved 109 Months', () => {
+  expect(testVal18.termsSaved).toBe(109);
+});
 
 // equal principal payment with partial month offset
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,849.11458333333 in raw interest'] = function (test) {
-  test.equal(testVal19.interest, 34849.11458333333);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,849.11458333333 in raw interest', () => {
+  expect(testVal19.interest).toBeCloseTo(34849.11458333333, 10);
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,849.11 in interest'] = function (test) {
-  test.equal(testVal19.interestRound, 34849.11);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $34,849.11 in interest', () => {
+  expect(testVal19.interestRound).toBe('34849.11');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $29,750.00 in principal'] = function (test) {
-  test.equal(testVal19.principalRound, 29750.00);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will have paid $29,750.00 in principal', () => {
+  expect(testVal19.principalRound).toBe('29750.00');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will owe $150,250.00'] = function (test) {
-  test.equal(testVal19.balanceRound, 150250.00);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 will owe $150,250.00', () => {
+  expect(testVal19.balanceRound).toBe('150250.00');
+});
 
-exports['After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and equal principal payment and partial month offset of 0.5 will have paid $35,874.09 in interest'] = function (test) {
-  test.equal(testVal20.interestRound, 35874.09);
-  test.done();
-};
+test('After 5 years a borrower with a 30 year, $180,000 loan with a 4.375% interest rate and equal principal payment and partial month offset of 0.5 will have paid $35,874.09 in interest', () => {
+  expect(testVal20.interestRound).toBe('35874.09');
+});
 
-exports['After 5 years a borrower borrowing nothing with equal principal payment and partial month offset of 0.5 will owe no interest'] = function (test) {
-  test.equal(testVal21.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing nothing with equal principal payment and partial month offset of 0.5 will owe no interest', () => {
+  expect(testVal21.interestRound).toBe('0.00');
+});
 
-exports['After 5 years a borrower borrowing without interest and equal principal payment and partial month offset of 0.5 will owe no interest'] = function (test) {
-  test.equal(testVal22.interestRound, 0);
-  test.done();
-};
+test('After 5 years a borrower borrowing without interest and equal principal payment and partial month offset of 0.5 will owe no interest', () => {
+  expect(testVal22.interestRound).toBe('0.00');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 paying $200 extra per month will have saved $23,338.00 in interest'] = function (test) {
-  test.equal((testVal23.interestRound-testVal6.interestRound).toFixed(2), 23338.00);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 paying $200 extra per month will have saved $23,338.00 in interest', () => {
+  expect((parseFloat(testVal23.interestRound) - parseFloat(testVal6.interestRound)).toFixed(2)).toBe('23338.00');
+});
 
-exports['After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 paying $200 extra per month will have saved 102 Months'] = function (test) {
-  test.equal(testVal24.termsSaved, 102);
-  test.done();
-};
+test('After 30 years a borrower with a 30 year, $180,000 loan with a 4.25% interest rate and equal principal payment and partial month offset of 0.5 paying $200 extra per month will have saved 102 Months', () => {
+  expect(testVal24.termsSaved).toBe(102);
+});
 
-exports['Throw an error if bad repaymentType is passed'] = function (test) {
-  test.throws(function() {
+test('Throw an error if bad repaymentType is passed', () => {
+  expect(() => {
     amortize({amount: 180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60, repaymentType: 'banana'});
-  },
-  Error, "repaymentType must be one of: 'amortize', 'equal-principal-payment'");
-  test.done();
-};
+  }).toThrow("repaymentType must be one of: 'amortize', 'equal-principal-payment'");
+});
 
-exports['Throw an error if a string is passed'] = function (test) {
-  test.throws(function() {
+test('Throw an error if a string is passed', () => {
+  expect(() => {
     amortize({amount: 'Gregor Samsa', rate: 4.25, totalTerm: 360, amortizeTerm: 60});
-  },
-  Error, 'Specify all values as a positive number');
-  test.done();
-};
+  }).toThrow('Loan amount must be a non-negative value.');
+});
 
-exports['Throw an error if a negative value is passed'] = function (test) {
-  test.throws(function() {
+test('Throw an error if a negative value is passed', () => {
+  expect(() => {
     amortize({amount: -180000, rate: 4.25, totalTerm: 360, amortizeTerm: 60});
-  },
-  Error, 'Specify all values as a positive number');
-  test.done();
-};
+  }).toThrow('Loan amount must be a non-negative value.');
+});
